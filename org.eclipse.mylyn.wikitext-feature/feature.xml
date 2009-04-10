@@ -29,7 +29,7 @@
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/tools/mylyn/update/incubator"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/tools/mylyn/update/e3.3"/>
    </url>
 
    <requires>
@@ -104,7 +104,7 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.mylyn.wikitext.textile.ui"
          download-size="0"
@@ -146,4 +146,5 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
 </feature>
