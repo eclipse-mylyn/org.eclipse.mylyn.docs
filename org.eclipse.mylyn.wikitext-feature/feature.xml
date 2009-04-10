@@ -12,7 +12,7 @@
 <feature
       id="org.eclipse.mylyn.wikitext_feature"
       label="%featureName"
-      version="1.1.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.mylyn">
 
@@ -29,7 +29,7 @@
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/tools/mylyn/update/incubator"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/tools/mylyn/update/e3.3"/>
    </url>
 
    <requires>
@@ -50,70 +50,7 @@
    </requires>
 
    <plugin
-         id="org.eclipse.mylyn.wikitext.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.mylyn.wikitext.textile.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.mylyn.wikitext.mediawiki.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.mylyn.wikitext.confluence.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.mylyn.wikitext.tracwiki.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.mylyn.wikitext.twiki.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.mylyn.wikitext.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.mylyn.wikitext.help.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-         
-   <plugin
-         id="org.eclipse.mylyn.wikitext.textile.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.mylyn.wikitext.mediawiki.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -127,7 +64,56 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.mylyn.wikitext.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.wikitext.mediawiki.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.wikitext.mediawiki.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.wikitext.textile.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.wikitext.textile.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.wikitext.tracwiki.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.mylyn.wikitext.tracwiki.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.wikitext.twiki.core"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -141,9 +127,17 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.mylyn.wikitext.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.mylyn.wikitext.tasks.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
 </feature>
