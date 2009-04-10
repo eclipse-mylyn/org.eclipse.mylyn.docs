@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name.0
 Bundle-SymbolicName: org.eclipse.mylyn.wikitext.ui;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.0.1.qualifier
 Bundle-Vendor: %Bundle-Vendor.0
-Require-Bundle: org.eclipse.mylyn.wikitext.core;bundle-version="[1.1.0,1.2.0)",
+Require-Bundle: org.eclipse.mylyn.wikitext.core;bundle-version="[1.0.0,1.1.0)",
  org.eclipse.core.runtime,
  org.eclipse.jface.text,
  org.eclipse.ui,
@@ -31,6 +31,7 @@ Export-Package: org.eclipse.mylyn.internal.wikitext.ui;x-friends:="org.eclipse.m
  org.eclipse.mylyn.internal.wikitext.ui.editor.validation;x-friends:="org.eclipse.mylyn.wikitext.tests,org.eclipse.mylyn.wikitext.tasks.ui",
  org.eclipse.mylyn.internal.wikitext.ui.properties;x-internal:=true,
  org.eclipse.mylyn.internal.wikitext.ui.util;x-friends:="org.eclipse.mylyn.wikitext.tests,org.eclipse.mylyn.wikitext.tasks.ui",
+ org.eclipse.mylyn.internal.wikitext.ui.util.css;x-friends:="org.eclipse.mylyn.wikitext.tasks.ui",
  org.eclipse.mylyn.internal.wikitext.ui.util.css.editor;x-friends:="org.eclipse.mylyn.wikitext.tasks.ui",
  org.eclipse.mylyn.internal.wikitext.ui.util.resources;x-internal:=true,
  org.eclipse.mylyn.internal.wikitext.ui.validation;x-internal:=true,
@@ -38,7 +39,6 @@ Export-Package: org.eclipse.mylyn.internal.wikitext.ui;x-friends:="org.eclipse.m
  org.eclipse.mylyn.internal.wikitext.ui.viewer.annotation;x-internal:=true,
  org.eclipse.mylyn.wikitext.ui.annotation,
  org.eclipse.mylyn.wikitext.ui.commands,
- org.eclipse.mylyn.wikitext.ui.editor,
  org.eclipse.mylyn.wikitext.ui.viewer
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin

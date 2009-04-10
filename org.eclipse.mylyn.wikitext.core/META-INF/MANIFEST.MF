@@ -2,12 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name.0
 Bundle-SymbolicName: org.eclipse.mylyn.wikitext.core;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.0.1.qualifier
 Bundle-Vendor: %Bundle-Vendor.0
 Export-Package: org.eclipse.mylyn.internal.wikitext.core;x-internal:=true,
  org.eclipse.mylyn.internal.wikitext.core.parser.builder;x-internal:=true,
  org.eclipse.mylyn.internal.wikitext.core.util;x-internal:=true,
- org.eclipse.mylyn.internal.wikitext.core.util.css;x-friends:="org.eclipse.mylyn.wikitext.ui,org.eclipse.mylyn.wikitext.tasks.ui",
  org.eclipse.mylyn.internal.wikitext.core.validation;x-internal:=true,
  org.eclipse.mylyn.wikitext.core,
  org.eclipse.mylyn.wikitext.core.parser,
