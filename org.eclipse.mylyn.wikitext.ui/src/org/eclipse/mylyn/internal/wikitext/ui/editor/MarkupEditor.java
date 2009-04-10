@@ -30,7 +30,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
@@ -80,7 +79,6 @@ import org.eclipse.mylyn.wikitext.core.parser.builder.HtmlDocumentBuilder;
 import org.eclipse.mylyn.wikitext.core.parser.markup.MarkupLanguage;
 import org.eclipse.mylyn.wikitext.core.parser.outline.OutlineItem;
 import org.eclipse.mylyn.wikitext.core.parser.outline.OutlineParser;
-import org.eclipse.mylyn.wikitext.ui.editor.MarkupSourceViewerConfiguration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.LocationEvent;
@@ -352,11 +350,6 @@ public class MarkupEditor extends TextEditor implements IShowInTarget, IShowInSo
 	public void createPartControl(Composite parent) {
 		super.createPartControl(parent);
 		ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
-		// fix bug 267553: font problems can occur if the default font of the text widget doesn't match the
-		//                 default font returned by the token scanner
-		if (sourceViewerConfiguration.getDefaultFont() != null) {
-			viewer.getTextWidget().setFont(sourceViewerConfiguration.getDefaultFont());
-		}
 
 		projectionSupport = new ProjectionSupport(viewer, getAnnotationAccess(), getSharedColors());
 		projectionSupport.install();
@@ -986,21 +979,14 @@ public class MarkupEditor extends TextEditor implements IShowInTarget, IShowInSo
 
 	private void updateSourceTabLabel() {
 		if (sourceTab != null) {
-			// bug 270215 carbon shows tooltip in source editing area.
-			boolean isCarbon = Platform.WS_CARBON.equals(Platform.getWS());
-
 			MarkupLanguage markupLanguage = getMarkupLanguage();
 			if (markupLanguage == null) {
 				sourceTab.setText(Messages.getString("MarkupEditor.SourceView_label")); //$NON-NLS-1$
-				if (!isCarbon) {
-					sourceTab.setToolTipText(Messages.getString("MarkupEditor.SourceView_tooltip")); //$NON-NLS-1$
-				}
+				sourceTab.setToolTipText(Messages.getString("MarkupEditor.SourceView_tooltip")); //$NON-NLS-1$
 			} else {
 				sourceTab.setText(Messages.getMessage("MarkupEditor.SourceView_label2", markupLanguage.getName())); //$NON-NLS-1$
-				if (!isCarbon) {
-					sourceTab.setToolTipText(Messages.getMessage(
-							"MarkupEditor.SourceView_tooltip2", markupLanguage.getName())); //$NON-NLS-1$
-				}
+				sourceTab.setToolTipText(Messages.getMessage(
+						"MarkupEditor.SourceView_tooltip2", markupLanguage.getName())); //$NON-NLS-1$
 			}
 		}
 	}
