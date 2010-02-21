@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2008 David Green and others.
+ * Copyright (c) 2007, 2009 David Green and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -63,20 +63,6 @@ public abstract class MarkupTask extends Task {
 	 */
 	public void setMarkupLanguage(String markupLanguage) {
 		this.markupLanguage = markupLanguage;
-	}
-
-	/**
-	 * @since 1.3
-	 */
-	public MarkupLanguageConfiguration getMarkupLanguageConfiguration() {
-		return markupLanguageConfiguration;
-	}
-
-	/**
-	 * @since 1.3
-	 */
-	public void setMarkupLanguageConfiguration(MarkupLanguageConfiguration markupLanguageConfiguration) {
-		this.markupLanguageConfiguration = markupLanguageConfiguration;
 	}
 
 	/**
