@@ -160,6 +160,18 @@
 	  </repositories>
     </profile>
     <profile>
+      <id>release</id>
+      <activation>
+		<property>
+          <name>env.TYPE</name>
+          <value>release</value>
+		</property>
+      </activation>
+      <properties>
+		<forceContextQualifier>v${env.TIMESTAMP}</forceContextQualifier>
+	  </properties>
+	</profile>
+    <profile>
       <id>hudson.eclipse.org</id>
       <activation>
 		<property>
