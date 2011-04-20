@@ -5,11 +5,11 @@
   <parent>
     <artifactId>mylyn-docs-parent</artifactId>
     <groupId>org.eclipse.mylyn.docs</groupId>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.4.1-SNAPSHOT</version>
   </parent>
   <groupId>org.eclipse.mylyn.docs</groupId>
   <artifactId>org.eclipse.mylyn.wikitext.help.ui</artifactId>
-  <version>1.4.0-SNAPSHOT</version>
+  <version>1.4.0.v20110316-0100</version>
   <packaging>eclipse-plugin</packaging>
   <build>
     <plugins>
@@ -82,12 +82,12 @@
         <dependency>
           <groupId>org.eclipse.mylyn.docs</groupId>
           <artifactId>org.eclipse.mylyn.wikitext.core</artifactId>
-          <version>1.4.0-SNAPSHOT</version>
+          <version>1.4.0.v20110316-0100</version>
         </dependency>
         <dependency>
           <groupId>org.eclipse.mylyn.docs</groupId>
           <artifactId>org.eclipse.mylyn.wikitext.textile.core</artifactId>
-          <version>1.4.0-SNAPSHOT</version>
+          <version>1.4.0.v20110316-0100</version>
         </dependency>
       </dependencies>
     </plugin>
