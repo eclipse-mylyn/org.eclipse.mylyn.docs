@@ -227,4 +227,5 @@ public class MediaWikiLanguage extends AbstractMediaWikiLanguage {
 	public String getTemplateExcludes() {
 		return templateExcludes;
 	}
+
 }
