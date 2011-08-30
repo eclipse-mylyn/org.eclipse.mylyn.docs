@@ -9,7 +9,7 @@
   </parent>
   <groupId>org.eclipse.mylyn.docs</groupId>
   <artifactId>org.eclipse.mylyn.wikitext.mediawiki.core</artifactId>
-  <version>1.5.1.v20110720-0100</version>
+  <version>1.5.2.v20110830-0100</version>
   <packaging>eclipse-plugin</packaging>
   <build>
     <plugins>
