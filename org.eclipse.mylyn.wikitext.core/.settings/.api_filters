@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.mylyn.wikitext.core" version="2">
+    <resource path="src/org/eclipse/mylyn/wikitext/core/parser/builder/AbstractMarkupDocumentBuilder.java" type="org.eclipse.mylyn.wikitext.core.parser.builder.AbstractMarkupDocumentBuilder">
+        <filter id="1142947843">
+            <message_arguments>
+                <message_argument value="1.7.4"/>
+                <message_argument value="createImplicitParagraphBlock()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/mylyn/wikitext/core/parser/builder/AbstractMarkupDocumentBuilder.java" type="org.eclipse.mylyn.wikitext.core.parser.builder.AbstractMarkupDocumentBuilder$Block">
+        <filter id="1142947843">
+            <message_arguments>
+                <message_argument value="1.7.4"/>
+                <message_argument value="isImplicitBlock()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/mylyn/wikitext/core/parser/builder/AbstractMarkupDocumentBuilder.java" type="org.eclipse.mylyn.wikitext.core.parser.builder.AbstractMarkupDocumentBuilder$ImplicitParagraphBlock">
+        <filter id="1142947843">
+            <message_arguments>
+                <message_argument value="1.7.4"/>
+                <message_argument value="normalizeWhitespace(String)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1142947843">
+            <message_arguments>
+                <message_argument value="1.7.4"/>
+                <message_argument value="normalizeWhitespace(int)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
