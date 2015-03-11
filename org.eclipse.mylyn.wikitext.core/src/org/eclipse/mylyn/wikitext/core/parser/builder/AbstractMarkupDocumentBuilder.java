@@ -22,7 +22,7 @@ import com.google.common.base.Throwables;
 
 /**
  * Provides default functionality for document builders that emit lightweight wiki markup.
- * 
+ *
  * @author David Green
  * @since 1.6
  */
@@ -85,6 +85,43 @@ public abstract class AbstractMarkupDocumentBuilder extends DocumentBuilder {
 		@Override
 		public void close() throws IOException {
 			emitContent(suffix);
+			super.close();
+		}
+	}
+
+	/**
+	 * A block that is delimited by newlines.
+	 */
+	protected class NewlineDelimitedBlock extends Block {
+
+		private final int precedingNewlineCount;
+
+		private final int trailingNewlineCount;
+
+		public NewlineDelimitedBlock(BlockType blockType, int precedingNewlineCount, int trailingNewlineCount) {
+			super(blockType);
+			this.precedingNewlineCount = precedingNewlineCount;
+			this.trailingNewlineCount = trailingNewlineCount;
+		}
+
+		@Override
+		public void open() throws IOException {
+			super.open();
+			emitDelimiter(precedingNewlineCount);
+		}
+
+		private void emitDelimiter(int newlineCount) throws IOException {
+			if (getLastChar() != 0) {
+				int delimiterSize = newlineCount - getTrailingNewlineCount();
+				for (int x = delimiterSize; x > 0; --x) {
+					emitContent('\n');
+				}
+			}
+		}
+
+		@Override
+		public void close() throws IOException {
+			emitDelimiter(trailingNewlineCount);
 			super.close();
 		}
 	}
@@ -155,6 +192,10 @@ public abstract class AbstractMarkupDocumentBuilder extends DocumentBuilder {
 
 		private char lastChar;
 
+		private int trailingNewlineCount;
+
+		private int characterCount;
+
 		public MarkupWriter(Writer delegate) {
 			this.delegate = delegate;
 		}
@@ -165,9 +206,27 @@ public abstract class AbstractMarkupDocumentBuilder extends DocumentBuilder {
 				return;
 			}
 			delegate.write(cbuf, off, len);
+			characterCount += len;
 			int lastCharIndex = off + len - 1;
 			lastChar = cbuf[lastCharIndex];
+			int newlineCount = countTailingNewlines(cbuf, off, len);
+			if (newlineCount == len) {
+				trailingNewlineCount += newlineCount;
+			} else {
+				trailingNewlineCount = newlineCount;
+			}
+		}
 
+		private int countTailingNewlines(char[] cbuf, int off, int len) {
+			int newlineCount = 0;
+			for (int x = off + len - 1; x >= off; --x) {
+				char c = cbuf[x];
+				if (c != '\n') {
+					break;
+				}
+				++newlineCount;
+			}
+			return newlineCount;
 		}
 
 		/**
@@ -175,6 +234,14 @@ public abstract class AbstractMarkupDocumentBuilder extends DocumentBuilder {
 		 */
 		public char getLastChar() {
 			return lastChar;
+		}
+
+		public int getTrailingNewlineCount() {
+			return trailingNewlineCount;
+		}
+
+		public int getCharacterCount() {
+			return characterCount;
 		}
 
 		@Override
@@ -228,7 +295,7 @@ public abstract class AbstractMarkupDocumentBuilder extends DocumentBuilder {
 	 * {@link #getLastChar() last character} is a separator character, or if the content to be emitted starts with a
 	 * separator. If neither are true, then a single space character is inserted into the content stream. Subsequent
 	 * calls to <code>emitContent</code> are not affected.
-	 * 
+	 *
 	 * @see #clearRequireAdjacentSeparator()
 	 */
 	protected void requireAdjacentSeparator() {
@@ -282,7 +349,7 @@ public abstract class AbstractMarkupDocumentBuilder extends DocumentBuilder {
 	/**
 	 * Subclasses may push a writer in order to intercept emitted content. Calls to this method must be matched by
 	 * corresponding calls to {@link #popWriter()}.
-	 * 
+	 *
 	 * @see #popWriter()
 	 */
 	protected void pushWriter(Writer writer) {
@@ -316,6 +383,24 @@ public abstract class AbstractMarkupDocumentBuilder extends DocumentBuilder {
 			}
 		}
 		return c;
+	}
+
+	/**
+	 * Provides the number of trailing newlines that were emitted, or 0 if no trailing newlines were written.
+	 */
+	protected int getTrailingNewlineCount() {
+		int count = writer.getTrailingNewlineCount();
+		if (writer.getCharacterCount() == count) {
+			for (int x = writerState.size() - 1; x >= 0; --x) {
+				MarkupWriter markupWriter = writerState.get(x);
+				int trailingNewlineCount = markupWriter.getTrailingNewlineCount();
+				count += trailingNewlineCount;
+				if (markupWriter.getCharacterCount() > trailingNewlineCount) {
+					break;
+				}
+			}
+		}
+		return count;
 	}
 
 	@Override
@@ -456,7 +541,7 @@ public abstract class AbstractMarkupDocumentBuilder extends DocumentBuilder {
 	/**
 	 * Creates paragraph blocks in cases where content is emitted but no block is currently open. Subclasses may
 	 * override to alter the default paragraph block implementation.
-	 * 
+	 *
 	 * @since 1.8
 	 */
 	protected Block createImplicitParagraphBlock() {

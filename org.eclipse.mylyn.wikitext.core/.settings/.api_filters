@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.mylyn.wikitext.core" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="new API added in 2.4" id="924844039">
+            <message_arguments>
+                <message_argument value="2.3.2"/>
+                <message_argument value="2.3.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/mylyn/wikitext/core/parser/builder/AbstractMarkupDocumentBuilder.java" type="org.eclipse.mylyn.wikitext.core.parser.builder.AbstractMarkupDocumentBuilder">
+        <filter comment="new API added in 2.4" id="1143996420">
+            <message_arguments>
+                <message_argument value="getTrailingNewlineCount()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/mylyn/wikitext/core/parser/builder/AbstractMarkupDocumentBuilder.java" type="org.eclipse.mylyn.wikitext.core.parser.builder.AbstractMarkupDocumentBuilder$NewlineDelimitedBlock">
+        <filter comment="new API added in 2.4" id="1143996420">
+            <message_arguments>
+                <message_argument value="NewlineDelimitedBlock"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/mylyn/wikitext/core/util/DefaultXmlStreamWriter.java" type="org.eclipse.mylyn.wikitext.core.util.DefaultXmlStreamWriter">
+        <filter comment="new API added in 2.4" id="1141899266">
+            <message_arguments>
+                <message_argument value="2.4"/>
+                <message_argument value="2.3"/>
+                <message_argument value="getXmlHeaderQuoteChar()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="new API added in 2.4" id="1141899266">
+            <message_arguments>
+                <message_argument value="2.4"/>
+                <message_argument value="2.3"/>
+                <message_argument value="setXmlHeaderQuoteChar(char)"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="src/org/eclipse/mylyn/wikitext/core/util/XmlStreamWriter.java" type="org.eclipse.mylyn.wikitext.core.util.XmlStreamWriter">
         <filter id="1142947843">
             <message_arguments>
