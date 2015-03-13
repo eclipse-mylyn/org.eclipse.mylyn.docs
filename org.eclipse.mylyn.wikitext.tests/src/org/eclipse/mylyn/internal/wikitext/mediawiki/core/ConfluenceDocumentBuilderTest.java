@@ -563,7 +563,7 @@ public class ConfluenceDocumentBuilderTest extends TestCase {
 
 		TestUtil.println(markup);
 
-		assertEquals("|first|content|\n\n", markup);
+		assertEquals("|first| content|\n\n", markup);
 	}
 
 	public void testItalics() {

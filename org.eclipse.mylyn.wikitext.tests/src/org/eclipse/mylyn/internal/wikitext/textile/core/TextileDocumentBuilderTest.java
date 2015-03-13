@@ -29,9 +29,9 @@ import org.eclipse.mylyn.wikitext.tests.TestUtil;
 public class TextileDocumentBuilderTest extends TestCase {
 
 	private static final String[] PLATFORM_NEWLINES = new String[] {//
-		"\r\n", // Windows
-		"\r", // Mac
-		"\n", // Unix, Linux
+	"\r\n", // Windows
+			"\r", // Mac
+			"\n", // Unix, Linux
 	};
 
 	private TextileDocumentBuilder builder;
@@ -735,7 +735,7 @@ public class TextileDocumentBuilderTest extends TestCase {
 
 		TestUtil.println(markup);
 
-		assertEquals("|first|content|\n\n", markup);
+		assertEquals("|first| content|\n\n", markup);
 	}
 
 	public void testEmptyBoldSpan() {
@@ -877,6 +877,24 @@ public class TextileDocumentBuilderTest extends TestCase {
 		TestUtil.println(markup);
 
 		assertEquals("a \"link to foo\":#foo test\n\n", markup);
+	}
+
+	public void testLinkWithNullHref() {
+		builder.beginDocument();
+
+		builder.characters("a ");
+		builder.beginSpan(SpanType.LINK, new LinkAttributes());
+		builder.characters("link text");
+		builder.endSpan();
+		builder.characters(" test");
+
+		builder.endDocument();
+
+		String markup = out.toString();
+
+		TestUtil.println(markup);
+
+		assertEquals("a \"link text\": test\n\n", markup);
 	}
 
 	public void testImageLink() {
