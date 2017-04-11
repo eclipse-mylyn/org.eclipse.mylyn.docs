@@ -21,7 +21,7 @@ Export-Package: org.eclipse.mylyn.internal.wikitext.core.parser.builder;x-intern
  org.eclipse.mylyn.wikitext.core.util,
  org.eclipse.mylyn.wikitext.core.validation
 Require-Bundle: org.jsoup;bundle-version="1.7.2";resolution:=optional;x-installation:=greedy,
- com.google.guava;bundle-version="15.0.0"
+ com.google.guava;bundle-version="[15.0.0,21.0)"
 Import-Package: javax.xml.stream,
  javax.xml.parsers,
  javax.xml.namespace
