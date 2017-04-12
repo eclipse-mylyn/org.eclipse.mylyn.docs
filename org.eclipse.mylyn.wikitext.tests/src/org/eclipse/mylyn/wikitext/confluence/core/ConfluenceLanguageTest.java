@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2015 David Green and others.
+ * Copyright (c) 2007, 2017 David Green and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -62,11 +62,9 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 	public void testParagraph() throws Exception {
 		String html = parser.parseToHtml("a paragraph\n\nanother paragraph\nwith\n2 lines");
 		TestUtil.println("HTML:" + html);
-		assertTrue(Pattern.compile(
-				"<body><p>a paragraph</p><p>another paragraph<br/>\\s*with<br/>\\s*2 lines</p></body>",
-				Pattern.MULTILINE)
-				.matcher(html)
-				.find());
+		assertTrue(
+				Pattern.compile("<body><p>a paragraph</p><p>another paragraph<br/>\\s*with<br/>\\s*2 lines</p></body>",
+						Pattern.MULTILINE).matcher(html).find());
 	}
 
 	@Test
@@ -75,27 +73,21 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 			initParser();
 			String html = parser.parseToHtml("h" + x + ". a heading\n\nwith a para");
 			TestUtil.println("HTML:" + html);
-			assertTrue(Pattern.compile(
-					"<body><h" + x + " id=\"aheading\">a heading</h" + x + "><p>with a para</p></body>",
-					Pattern.MULTILINE)
-					.matcher(html)
-					.find());
+			assertTrue(
+					Pattern.compile("<body><h" + x + " id=\"aheading\">a heading</h" + x + "><p>with a para</p></body>",
+							Pattern.MULTILINE).matcher(html).find());
 
 			html = parser.parseToHtml("h" + x + ". a heading\nwith a para");
 			TestUtil.println("HTML:" + html);
-			assertTrue(Pattern.compile(
-					"<body><h" + x + " id=\"aheading\">a heading</h" + x + "><p>with a para</p></body>",
-					Pattern.MULTILINE)
-					.matcher(html)
-					.find());
+			assertTrue(
+					Pattern.compile("<body><h" + x + " id=\"aheading\">a heading</h" + x + "><p>with a para</p></body>",
+							Pattern.MULTILINE).matcher(html).find());
 
 			html = parser.parseToHtml("  h" + x + ". a heading\n\nwith a para");
 			TestUtil.println("HTML:" + html);
-			assertTrue(Pattern.compile(
-					"<body><h" + x + " id=\"aheading\">a heading</h" + x + "><p>with a para</p></body>",
-					Pattern.MULTILINE)
-					.matcher(html)
-					.find());
+			assertTrue(
+					Pattern.compile("<body><h" + x + " id=\"aheading\">a heading</h" + x + "><p>with a para</p></body>",
+							Pattern.MULTILINE).matcher(html).find());
 		}
 	}
 
@@ -105,9 +97,7 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		TestUtil.println("HTML:" + html);
 		assertTrue(Pattern.compile(
 				"<body><blockquote><p>a multiline<br/>\\s*block quote</p></blockquote><p>with a para</p></body>",
-				Pattern.MULTILINE)
-				.matcher(html)
-				.find());
+				Pattern.MULTILINE).matcher(html).find());
 	}
 
 	@Test
@@ -116,9 +106,7 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		TestUtil.println("HTML:" + html);
 		assertTrue(Pattern.compile(
 				"<body><blockquote><p>a multiline<br/>\\s*block quote</p><p>with two paras</p></blockquote><p>another para</p></body>",
-				Pattern.MULTILINE)
-				.matcher(html)
-				.find());
+				Pattern.MULTILINE).matcher(html).find());
 	}
 
 	@Test
@@ -134,16 +122,15 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		TestUtil.println("HTML:" + html);
 		assertTrue(Pattern.compile(
 				"<body><blockquote><p>a multiline<br/>\\s*block quote</p><p>with two paras</p></blockquote></body>",
-				Pattern.MULTILINE)
-				.matcher(html)
-				.find());
+				Pattern.MULTILINE).matcher(html).find());
 	}
 
 	@Test
 	public void testBlockQuoteExtendedLeadingSpaces() {
 		String html = parser.parseToHtml("     {quote}\na multiline\nblock quote\n    {quote}\nmore text");
 		TestUtil.println("HTML:" + html);
-		assertTrue(html.contains("<body><blockquote><p>a multiline<br/>block quote</p></blockquote><p>more text</p></body>"));
+		assertTrue(html
+				.contains("<body><blockquote><p>a multiline<br/>block quote</p></blockquote><p>more text</p></body>"));
 	}
 
 	@Test
@@ -157,7 +144,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 	public void testBlockQuoteWithBulletedList() {
 		String html = parser.parseToHtml("{quote}\ntext\n* a list\n* second item\n\nmore text\n{quote}\nanother para");
 		TestUtil.println("HTML:" + html);
-		assertTrue(html.contains("<body><blockquote><p>text</p><ul><li>a list</li><li>second item</li></ul><p>more text</p></blockquote><p>another para</p></body>"));
+		assertTrue(html.contains(
+				"<body><blockquote><p>text</p><ul><li>a list</li><li>second item</li></ul><p>more text</p></blockquote><p>another para</p></body>"));
 	}
 
 	@Test
@@ -283,7 +271,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 	public void testHyperlink() {
 		String html = parser.parseToHtml("a [http://example.com] hyperlink");
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>a <a href=\"http://example.com\">http://example.com</a> hyperlink</p></body>"));
+		assertTrue(
+				html.contains("<body><p>a <a href=\"http://example.com\">http://example.com</a> hyperlink</p></body>"));
 	}
 
 	@Test
@@ -332,7 +321,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		String html = parser.parseToHtml("a [Another Page Example|Page Example] hyperlink");
 		TestUtil.println("HTML: \n" + html);
 		getMarkupLanguage().setInternalLinkPattern(oldPattern);
-		assertTrue(html.contains("<body><p>a <a href=\"/display/Page Example\">Another Page Example</a> hyperlink</p></body>"));
+		assertTrue(html.contains(
+				"<body><p>a <a href=\"/display/Page Example\">Another Page Example</a> hyperlink</p></body>"));
 	}
 
 	@Test
@@ -366,7 +356,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		String html = parser.parseToHtml("a [Another Page Example|Page Example| Some tip] hyperlink");
 		TestUtil.println("HTML: \n" + html);
 		getMarkupLanguage().setInternalLinkPattern(oldPattern);
-		assertTrue(html.contains("<body><p>a <a href=\"/display/Page Example\" title=\"Some tip\">Another Page Example</a> hyperlink</p></body>"));
+		assertTrue(html.contains(
+				"<body><p>a <a href=\"/display/Page Example\" title=\"Some tip\">Another Page Example</a> hyperlink</p></body>"));
 	}
 
 	@Test
@@ -401,35 +392,40 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 	public void testHyperlinkWithTip() {
 		String html = parser.parseToHtml("a [example | http://example.com | title is here] hyperlink");
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>a <a href=\"http://example.com\" title=\"title is here\">example</a> hyperlink</p></body>"));
+		assertTrue(html.contains(
+				"<body><p>a <a href=\"http://example.com\" title=\"title is here\">example</a> hyperlink</p></body>"));
 	}
 
 	@Test
 	public void testHyperlinkImplied() {
 		String html = parser.parseToHtml("a http://example.com hyperlink");
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>a <a href=\"http://example.com\">http://example.com</a> hyperlink</p></body>"));
+		assertTrue(
+				html.contains("<body><p>a <a href=\"http://example.com\">http://example.com</a> hyperlink</p></body>"));
 	}
 
 	@Test
 	public void testHyperlinkImpliedNegativeMatch() {
 		String html = parser.parseToHtml("a http://example.com. hyperlink");
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>a <a href=\"http://example.com\">http://example.com</a>. hyperlink</p></body>"));
+		assertTrue(html
+				.contains("<body><p>a <a href=\"http://example.com\">http://example.com</a>. hyperlink</p></body>"));
 	}
 
 	@Test
 	public void testHyperlinkImpliedNegativeMatch2() {
 		String html = parser.parseToHtml("a http://example.com) hyperlink");
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>a <a href=\"http://example.com\">http://example.com</a>) hyperlink</p></body>"));
+		assertTrue(html
+				.contains("<body><p>a <a href=\"http://example.com\">http://example.com</a>) hyperlink</p></body>"));
 	}
 
 	@Test
 	public void testHyperlinkWithSpaces() {
 		String html = parser.parseToHtml("a [ http://example.com ] hyperlink");
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>a <a href=\"http://example.com\">http://example.com</a> hyperlink</p></body>"));
+		assertTrue(
+				html.contains("<body><p>a <a href=\"http://example.com\">http://example.com</a> hyperlink</p></body>"));
 	}
 
 	@Test
@@ -476,7 +472,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		// bug 298626: [Confluence] italic formatting with embedded links is not handled correctly
 		String html = parser.parseToHtml("_This [This is a test|http://my_url.jpg] is a test_");
 		System.out.println(html);
-		assertTrue(html.contains("<body><p><em>This <a href=\"http://my_url.jpg\">This is a test</a> is a test</em></p></body>"));
+		assertTrue(html.contains(
+				"<body><p><em>This <a href=\"http://my_url.jpg\">This is a test</a> is a test</em></p></body>"));
 	}
 
 	@Test
@@ -484,7 +481,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		// bug 298626: [Confluence] italic formatting with embedded links is not handled correctly
 		String html = parser.parseToHtml("_This [This is a test|http://myurl.jpg] is a test_");
 		System.out.println(html);
-		assertTrue(html.contains("<body><p><em>This <a href=\"http://myurl.jpg\">This is a test</a> is a test</em></p></body>"));
+		assertTrue(html.contains(
+				"<body><p><em>This <a href=\"http://myurl.jpg\">This is a test</a> is a test</em></p></body>"));
 	}
 
 	@Test
@@ -492,7 +490,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		// bug 298626: [Confluence] italic formatting with embedded links is not handled correctly
 		String html = parser.parseToHtml("_This [This is a test|http://my%5Furl.jpg] is a test_");
 		System.out.println(html);
-		assertTrue(html.contains("<body><p><em>This <a href=\"http://my%5Furl.jpg\">This is a test</a> is a test</em></p></body>"));
+		assertTrue(html.contains(
+				"<body><p><em>This <a href=\"http://my%5Furl.jpg\">This is a test</a> is a test</em></p></body>"));
 	}
 
 	@Test
@@ -560,7 +559,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		String html = parser.parseToHtml("- first\n-- second\n--- third\n---- fourth");
 
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<ul style=\"list-style: square\"><li>first<ul><li>second<ul><li>third<ul><li>fourth</li></ul></li></ul></li></ul></li></ul>"));
+		assertTrue(html.contains(
+				"<ul style=\"list-style: square\"><li>first<ul><li>second<ul><li>third<ul><li>fourth</li></ul></li></ul></li></ul></li></ul>"));
 	}
 
 	@Test
@@ -574,7 +574,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 	public void testImageWithFullUrl() {
 		String html = parser.parseToHtml("an !http://www.foo.com/bin/image.png! image");
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>an <img border=\"0\" src=\"http://www.foo.com/bin/image.png\"/> image</p></body>"));
+		assertTrue(html
+				.contains("<body><p>an <img border=\"0\" src=\"http://www.foo.com/bin/image.png\"/> image</p></body>"));
 	}
 
 	@Test
@@ -595,14 +596,16 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 	public void testImageWithAttributesAlignMiddle() {
 		String html = parser.parseToHtml("an !image.png|align=middle! image");
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>an <img align=\"middle\" border=\"0\" src=\"image.png\"/> image</p></body>"));
+		assertTrue(
+				html.contains("<body><p>an <img align=\"middle\" border=\"0\" src=\"image.png\"/> image</p></body>"));
 	}
 
 	@Test
 	public void testImageWithAttributesAlignCenter() {
 		String html = parser.parseToHtml("an !image.png|align=center! image");
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>an <div style=\"text-align: center;\"><img border=\"0\" src=\"image.png\"/></div> image</p></body>"));
+		assertTrue(html.contains(
+				"<body><p>an <div style=\"text-align: center;\"><img border=\"0\" src=\"image.png\"/></div> image</p></body>"));
 	}
 
 	@Test
@@ -613,14 +616,16 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		parser.parse("an !image.png|align=center! image");
 		String result = out.toString();
 		TestUtil.println("DocBook: \n" + result);
-		assertTrue(result.contains("<para>an <mediaobject><imageobject><imagedata fileref=\"image.png\"/></imageobject></mediaobject> image</para>"));
+		assertTrue(result.contains(
+				"<para>an <mediaobject><imageobject><imagedata fileref=\"image.png\"/></imageobject></mediaobject> image</para>"));
 	}
 
 	@Test
 	public void testImageWithAttributesAlt() {
 		String html = parser.parseToHtml("an !image.png|alt= some alt text! image");
 		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>an <img alt=\"some alt text\" border=\"0\" src=\"image.png\"/> image</p></body>"));
+		assertTrue(html
+				.contains("<body><p>an <img alt=\"some alt text\" border=\"0\" src=\"image.png\"/> image</p></body>"));
 	}
 
 	@Test
@@ -661,23 +666,21 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 
 	@Test
 	public void testTable() {
-		String html = parser.parseToHtml("|a|row|not header|");
-		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><table><tr><td>a</td><td>row</td><td>not header</td></tr></table></body>"));
+		assertMarkup("<table><tr><td>a</td><td>row</td><td>not header</td></tr></table>", "|a|row|not header|");
 	}
 
 	@Test
 	public void testTableWithHeader() {
-		String html = parser.parseToHtml("||a||header||row||\n|a|row|not header|");
-		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><table><tr><th>a</th><th>header</th><th>row</th></tr><tr><td>a</td><td>row</td><td>not header</td></tr></table></body>"));
+		assertMarkup(
+				"<table><tr><th>a</th><th>header</th><th>row</th></tr><tr><td>a</td><td>row</td><td>not header</td></tr></table>",
+				"||a||header||row||\n|a|row|not header|");
 	}
 
 	@Test
 	public void testTableNestedWithHeader() {
-		String html = parser.parseToHtml("a para\n||a||header||row||\n|a|row|not header|\ntail");
-		TestUtil.println("HTML: \n" + html);
-		assertTrue(html.contains("<body><p>a para</p><table><tr><th>a</th><th>header</th><th>row</th></tr><tr><td>a</td><td>row</td><td>not header</td></tr></table><p>tail</p></body>"));
+		assertMarkup(
+				"<p>a para</p><table><tr><th>a</th><th>header</th><th>row</th></tr><tr><td>a</td><td>row</td><td>not header</td></tr></table><p>tail</p>",
+				"a para\n||a||header||row||\n|a|row|not header|\ntail");
 	}
 
 	@Test
@@ -696,19 +699,72 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 	}
 
 	@Test
+	public void testTableWithSingletonList() {
+		// test for bug# 513661
+		assertMarkup("<table><tr><td><ul><li>one thing</li></ul></td><td>another cell</td></tr></table>",
+				"|* one thing| another cell |");
+	}
+
+	@Test
+	public void testTableWithSingletonListAndWhitespacePrefix() {
+		// test for bug# 513661
+		assertMarkup("<table><tr><td><ul><li>one thing</li></ul></td><td>another cell</td></tr></table>",
+				"|    * one thing| another cell |");
+	}
+
+	@Test
+	public void testTableWithBulletedLists() {
+		// test for bug# 513661
+		assertMarkup(
+				"<table><tr><td><ul><li>one thing</li><li>two things</li></ul></td><td>another cell</td></tr></table>",
+				"|* one thing\n* two things| another cell |");
+	}
+
+	@Test
+	public void testTableWithNumberedLists() {
+		// test for bug# 513661
+		assertMarkup(
+				"<table><tr><td>other cell</td><td><ol><li>one thing</li><li>two things</li><li>three things </li></ol></td></tr></table>",
+				"|other cell| # one thing\n# two things\n# three things |");
+	}
+
+	@Test
+	public void testTableWithLinksAndLists() {
+		// test for bug# 513661
+		assertMarkup(
+				"<table><tr><td><a href=\"https://textile-j.dev.java.net/\">Website</a></td><td><ol><li>one thing</li><li>two things</li><li>three things </li></ol></td><td><a href=\"http://www.eclipse.org\">Eclipse</a></td></tr></table>",
+				"| [Website|https://textile-j.dev.java.net/]| # one thing\n# two things\n# three things | [Eclipse|http://www.eclipse.org] |");
+	}
+
+	@Test
+	public void testTableWithMultipleLists() {
+		// test for bug# 513661
+		assertMarkup("<table>" + //
+				"<tr><th>Bulleted list</th><th><ul><li>one thing</li><li>two things </li></ul></th></tr>" + //
+				"<tr><td>Numbered list</td><td><ol><li>one thing</li><li>two things </li></ol></td></tr>" + //
+				"<tr><td>Bulleted list</td><td><ul style=\"list-style: square\"><li>one thing<ul><li>two things </li></ul></li></ul></td></tr>"
+				+ //
+				"</table>", "||Bulleted list||* one thing\n* two things |\n" + //
+						"|Numbered list|# one thing\n# two things |\n" + //
+						"|Bulleted list|- one thing\n-- two things |");
+	}
+
+	@Test
 	public void testPreformattedExtended() {
-		String html = parser.parseToHtml("{noformat}\na multiline\n\tpreformatted\n\nwith two paras\n{noformat}\nanother para");
+		String html = parser
+				.parseToHtml("{noformat}\na multiline\n\tpreformatted\n\nwith two paras\n{noformat}\nanother para");
 		TestUtil.println("HTML:" + html);
-		assertTrue(Pattern.compile(
-				"body><pre>a multiline\\s+preformatted\\s+with two paras\\s+</pre><p>another para</p></body>",
-				Pattern.MULTILINE)
+		assertTrue(Pattern
+				.compile("body><pre>a multiline\\s+preformatted\\s+with two paras\\s+</pre><p>another para</p></body>",
+						Pattern.MULTILINE)
 				.matcher(html)
 				.find());
 	}
 
 	@Test
 	public void testPreformattedExtended2() {
-		String html = parser.parseToHtml("{noformat}\na multiline\n\tpreformatted\n\nwith two paras{noformat}another para");
+		String html = parser
+				.parseToHtml("{noformat}\na multiline\n\tpreformatted\n\nwith two paras{noformat}another para");
 		TestUtil.println("HTML:" + html);
 		assertTrue(html.contains("<body><pre>a multiline"));
 		assertTrue(html.contains("</pre><p>another para</p></body>"));
@@ -737,7 +793,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		parser.parse("{note}this is a note {note}\n\n* one thing\n* two things");
 		String html = out.toString();
 		TestUtil.println("HTML:" + html);
-		assertTrue(html.contains("<body><div class=\"note\"><p>this is a note </p></div><ul><li>one thing</li><li>two things</li></ul></body>"));
+		assertTrue(html.contains(
+				"<body><div class=\"note\"><p>this is a note </p></div><ul><li>one thing</li><li>two things</li></ul></body>"));
 	}
 
 	@Test
@@ -749,7 +806,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		parser.parse("{note}this is a note {note}*bold* text\nfoo\n\nbar");
 		String html = out.toString();
 		TestUtil.println("HTML:" + html);
-		assertTrue(html.contains("<body><div class=\"note\"><p>this is a note </p></div><p><strong>bold</strong> text<br/>foo</p><p>bar</p></body>"));
+		assertTrue(html.contains(
+				"<body><div class=\"note\"><p>this is a note </p></div><p><strong>bold</strong> text<br/>foo</p><p>bar</p></body>"));
 	}
 
 	@Test
@@ -761,7 +819,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		parser.parse("abc{note}this is a note {note}*bold* text\nfoo\n\nbar");
 		String html = out.toString();
 		TestUtil.println("HTML:" + html);
-		assertTrue(html.contains("<body><p>abc</p><div class=\"note\"><p>this is a note </p></div><p><strong>bold</strong> text<br/>foo</p><p>bar</p></body>"));
+		assertTrue(html.contains(
+				"<body><p>abc</p><div class=\"note\"><p>this is a note </p></div><p><strong>bold</strong> text<br/>foo</p><p>bar</p></body>"));
 	}
 
 	@Test
@@ -814,12 +873,14 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 		String docbook = out.toString();
 		TestUtil.println("DocBook: " + docbook);
 		assertTrue(docbook.contains("<tip><title>A Title</title><para>the body of"));
-		assertTrue(docbook.contains("paragraphs or <emphasis role=\"bold\">other</emphasis> <emphasis>textile</emphasis> <citation>markup</citation></para></tip>"));
+		assertTrue(docbook.contains(
+				"paragraphs or <emphasis role=\"bold\">other</emphasis> <emphasis>textile</emphasis> <citation>markup</citation></para></tip>"));
 	}
 
 	@Test
 	public void testTableOfContents() throws IOException {
-		String html = parser.parseToHtml("h1. Table Of Contents\n\n{toc}\n\nh1. Top Header\n\nsome text\n\nh2. Subhead\n\nh2. Subhead2\n\nh1. Top Header 2\n\nh2. Subhead 3\n\nh3. Subhead 4");
+		String html = parser.parseToHtml(
+				"h1. Table Of Contents\n\n{toc}\n\nh1. Top Header\n\nsome text\n\nh2. Subhead\n\nh2. Subhead2\n\nh1. Top Header 2\n\nh2. Subhead 3\n\nh3. Subhead 4");
 
 		TestUtil.println("HTML: \n" + html);
 
@@ -831,7 +892,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 
 	@Test
 	public void testTableOfContentsWithMaxLevel() throws IOException {
-		String html = parser.parseToHtml("h1. Table Of Contents\n\n{toc:maxLevel=2}\n\nh1. Top Header\n\nsome text\n\nh2. Subhead\n\nh2. Subhead2\n\nh1. Top Header 2\n\nh2. Subhead 3\n\nh3. Subhead 4");
+		String html = parser.parseToHtml(
+				"h1. Table Of Contents\n\n{toc:maxLevel=2}\n\nh1. Top Header\n\nsome text\n\nh2. Subhead\n\nh2. Subhead2\n\nh1. Top Header 2\n\nh2. Subhead 3\n\nh3. Subhead 4");
 
 		TestUtil.println("HTML: \n" + html);
 
@@ -958,21 +1020,24 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 	public void testInlineQuoteNegativeMatch2() {
 		String html = parser.parseToHtml("{quote}a paragraph with {quote}inline quote{quote}");
 		TestUtil.println(html);
-		assertTrue(html.contains("<body><blockquote><p>a paragraph with </p></blockquote><p>inline quote{quote}</p></body>"));
+		assertTrue(html
+				.contains("<body><blockquote><p>a paragraph with </p></blockquote><p>inline quote{quote}</p></body>"));
 	}
 
 	@Test
 	public void testColor() {
 		String html = parser.parseToHtml("{color:red}\na paragraph\n\nanother paragraph\n{color}\ntext");
 		TestUtil.println(html);
-		assertTrue(html.contains("<body><div style=\"color: red;\"><p>a paragraph</p><p>another paragraph</p></div><p>text</p></body>"));
+		assertTrue(html.contains(
+				"<body><div style=\"color: red;\"><p>a paragraph</p><p>another paragraph</p></div><p>text</p></body>"));
 	}
 
 	@Test
 	public void testColor2() {
 		String html = parser.parseToHtml("{color:red}a paragraph\n\nanother paragraph{color}text");
 		TestUtil.println(html);
-		assertTrue(html.contains("<body><div style=\"color: red;\"><p>a paragraph</p><p>another paragraph</p></div><p>text</p></body>"));
+		assertTrue(html.contains(
+				"<body><div style=\"color: red;\"><p>a paragraph</p><p>another paragraph</p></div><p>text</p></body>"));
 	}
 
 	@Test
@@ -986,7 +1051,8 @@ public class ConfluenceLanguageTest extends AbstractMarkupGenerationTest<Conflue
 	public void testColor4() {
 		String html = parser.parseToHtml("text\n{color:red}more text{color}\ntext");
 		TestUtil.println(html);
-		assertTrue(html.contains("<body><p>text</p><div style=\"color: red;\"><p>more text</p></div><p>text</p></body>"));
+		assertTrue(
+				html.contains("<body><p>text</p><div style=\"color: red;\"><p>more text</p></div><p>text</p></body>"));
 	}
 
 	@Test
