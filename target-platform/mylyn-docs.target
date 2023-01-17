@@ -29,6 +29,12 @@
 					<type>jar</type>
 				</dependency>
 				<dependency>
+					<groupId>com.google.guava</groupId>
+					<artifactId>failureaccess</artifactId>
+					<version>1.0.1</version>
+					<type>jar</type>
+				</dependency>
+				<dependency>
 					<groupId>net.bytebuddy</groupId>
 					<artifactId>byte-buddy-agent</artifactId>
 					<version>1.12.16</version>
